@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const bcrypt = require("bcrypt");
 
 const userSchema = new mongoose.Schema({
   username: {
@@ -21,9 +22,8 @@ const userSchema = new mongoose.Schema({
   },
   role: {
     type: String,
-    required: true,
     enum: ["visitor", "member"],
-    default: "visitor",
+    default: "member",
   },
   date: {
     type: Date,
