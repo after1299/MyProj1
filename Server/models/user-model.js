@@ -31,13 +31,17 @@ const userSchema = new mongoose.Schema({
   },
 });
 
-userSchema.method.isVisitor = function () {
+userSchema.method("isVisitor", function () {
   return this.role == "visitor";
-};
+});
 
-userSchema.method.isMemboer = function () {
+userSchema.method("isMember", function () {
   return this.role == "member";
-};
+});
+
+userSchema.method("isAdmin", function () {
+  return this.role == "admin";
+});
 
 // mongoose schema middleware
 userSchema.pre("save", async function (next) {
