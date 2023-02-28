@@ -50,7 +50,7 @@ userSchema.pre("save", async function (next) {
   }
 });
 
-userSchema.method.comparePassword = function (password, cb) {
+userSchema.method("comparePassword", function (password, cb) {
   bcrypt.compare(password, this.password, (err, isMatch) => {
     if (err) {
       return cb(err, isMatch);
@@ -58,7 +58,7 @@ userSchema.method.comparePassword = function (password, cb) {
       cb(null, isMatch);
     }
   }); // bcrypt.compare(the password user enter when sign in, the password saved in database)
-};
+});
 
 const User = mongoose.model("User", userSchema);
 module.exports = User;
